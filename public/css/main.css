@@ -1,0 +1,66 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+
+/* Button to open the dialog */
+#openModalButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+#openModalButton:hover {
+    background-color: #45a049;
+}
+
+/* Style for the dialog */
+dialog {
+    padding: 20px;
+    width: 400px;
+    border: 1px solid #888;
+    border-radius: 8px;
+}
+
+/* Form input fields */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Toast message style */
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    padding: 10px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+/* Show the toast message */
+#toast.show {
+    visibility: visible;
+    opacity: 1;
+}

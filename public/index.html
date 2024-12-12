@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artventory</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <h1>Artventory</h1>
+
+    <!-- Button to open the Add Product dialog -->
+    <button id="openModalButton">Add New Product</button>
+
+    <!-- Inventory table -->
+    <table id="inventory-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Quantity</th>
+                <th>Materials</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Inventory rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <!-- Dialog for Adding Product -->
+    <dialog id="addProductDialog">
+        <h2>Add New Product</h2>
+        <form id="addProductForm">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="sku">SKU</label>
+            <input type="text" id="sku" name="sku" required>
+
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" required>
+
+            <label for="materials">Materials</label>
+            <textarea id="materials" name="materials" required></textarea>
+
+            <button type="submit">Add Product</button>
+        </form>
+        <button id="closeDialogButton">Close</button>
+    </dialog>
+
+    <!-- Dialog for Editing Product -->
+    <dialog id="editProductDialog">
+        <h2>Edit Product</h2>
+        <form id="editProductForm">
+            <input type="hidden" id="editProductId"> <!-- Hidden field to store the product ID -->
+            <label for="editProductName">Product Name</label>
+            <input type="text" id="editProductName" name="editProductName" required>
+
+            <label for="editSku">SKU</label>
+            <input type="text" id="editSku" name="editSku" required>
+
+            <label for="editQuantity">Quantity</label>
+            <input type="number" id="editQuantity" name="editQuantity" required>
+
+            <label for="editMaterials">Materials</label>
+            <textarea id="editMaterials" name="editMaterials" required></textarea>
+
+            <button type="submit">Save Changes</button>
+        </form>
+        <button id="closeEditDialogButton">Close</button>
+    </dialog>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
