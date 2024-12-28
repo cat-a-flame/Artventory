@@ -31,9 +31,8 @@
                     <option value="">Filter category</option>
                     <!-- Add options dynamically based on categories available -->
                 </select>
-                <button class="btn" onclick="filterByCategory()">Ok</button>
         
-                <button class="btn" onclick="resetSearch()">Reset</button>
+                <button class="ghost-button" onclick="resetSearch()">Reset view</button>
             </div>
         </div>
 
@@ -44,7 +43,7 @@
                     <th>Name</th>
                     <th>SKU</th>
                     <th>Quantity</th>
-                    <th>Materials</th>
+                    <!--th>Materials</th-->
                     <th>Category</th>
                     <th></th>
                 </tr>
@@ -79,7 +78,7 @@
 
                 <div class="form-row">
                     <label class="form-label" for="quantity">Quantity</label>
-                    <input class="form-input quantity" type="number" id="quantity" name="quantity" required>
+                    <input class="form-input quantity" type="number" id="quantity" name="quantity" required min="0">
                 </div>
             </div>
 
@@ -120,7 +119,7 @@
                 
                 <div class="form-row">
                     <label class="form-label" for="editQuantity">Quantity</label>
-                    <input class="form-input" type="number" id="editQuantity" name="editQuantity" required>
+                    <input class="form-input quantity" type="number" id="editQuantity" name="editQuantity" required min="0">
                 </div>
             </div>
             

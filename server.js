@@ -10,6 +10,8 @@ app.use(express.json());
 const productsFilePath = path.join(__dirname, 'products.json');
 const categoriesFilePath = path.join(__dirname, 'categories.json');
 
+let currentId = 1
+
 const readProductsFromFile = () => {
     try {
         const data = fs.readFileSync(productsFilePath, 'utf-8');
@@ -70,7 +72,7 @@ app.get('/filter', (req, res) => {
 
 app.post('/add-product', (req, res) => {
     const { name, sku, quantity, materials, category } = req.body;
-    const newProduct = { id: Date.now(), name, sku, quantity, materials, category };
+    const newProduct = { id: currentId++, name, sku, quantity, materials, category };
 
     try {
         const products = readProductsFromFile();
@@ -86,7 +88,8 @@ app.post('/add-product', (req, res) => {
 app.put('/edit-product', (req, res) => {
     const { id, name, sku, quantity, materials, category } = req.body;
 
-    if (!id || !name || !sku || !quantity || !materials || !category) {
+    const asd = isNaN(parseInt(quantity));
+    if ((!name || !materials || !category) || (!sku || asd)) {
         return res.status(400).json({ message: 'All fields are required.' });
     }
 

@@ -48,7 +48,7 @@ th, td {
 
     &.action-cell {
         text-align: right;
-        width: min-content;
+        width: 95px;
     }
 }
 th {
@@ -223,8 +223,19 @@ input, textarea {
 .ghost-button {
     background-color: transparent;
     border: 0;
+    border-radius: 4px;
     color: #5e4d70;
     cursor: pointer;
+    padding: .6rem .8rem;
+    transition: all .2s;
+
+    &:hover {
+        background-color: #efedf2;
+    }
+
+    &:focus {
+        background-color: #c2b8cf;
+    }
 }
 
 /* Toast message styles */
@@ -256,5 +267,5 @@ input, textarea {
 
 .h-icon {
     font-size: 1.3rem;
-    margin-right: .6rem;
+    margin-right: .8rem;
 }

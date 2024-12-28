@@ -6,7 +6,7 @@ function showToast(message, type = 'success') {
     // Show the toast
     setTimeout(() => {
         toastContainer.classList.add('show');
-    }, 100);
+    }, 50);
 
     // Hide the toast after 3 seconds
     setTimeout(() => {
@@ -28,7 +28,6 @@ const getInventory = async () => {
                 <td>${product.name}</td>
                 <td>${product.sku}</td>
                 <td>${product.quantity}</td>
-                <td>${product.materials}</td>
                 <td>${product.category}</td>
                 <td class="action-cell">
                     <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}')"><i class="fa-solid fa-pen"></i></button>
@@ -72,6 +71,10 @@ const getCategories = async () => {
             editCategorySelect.appendChild(option.cloneNode(true));
             filterCategorySelect.appendChild(option.cloneNode(true));
         });
+
+        // Add event listener to filter category on change
+        filterCategorySelect.addEventListener('change', filterByCategory);
+
     } catch (error) {
         console.error('Error fetching categories:', error);
         showToast('There was an error fetching the categories.', 'error');
@@ -98,7 +101,6 @@ const searchProducts = async () => {
                 <td>${product.name}</td>
                 <td>${product.sku}</td>
                 <td>${product.quantity}</td>
-                <td>${product.materials}</td>
                 <td>${product.category}</td>
                 <td class="action-cell">
                     <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}')"><i class="fa-solid fa-pen"></i></button>
@@ -219,6 +221,7 @@ document.getElementById('addProductForm').onsubmit = async (event) => {
             document.getElementById('addProductDialog').close();
             getInventory();
             showToast('<i class="fa-solid fa-check h-icon"></i> Product added successfully');
+            document.getElementById('addProductForm').reset();
         } else {
             showToast('Error adding product', 'error');
         }

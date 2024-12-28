@@ -1,26 +1,26 @@
 [
   {
-    "id": 1735393573941,
-    "name": "My own product 2",
-    "sku": "10",
-    "quantity": 5,
-    "materials": "Paper",
-    "category": "Greeting card"
-  },
-  {
     "id": 1735394055792,
-    "name": "My own product 2",
-    "sku": "103",
-    "quantity": 4,
-    "materials": "Paper",
-    "category": "Bookmark"
+    "name": "Skull and crow sticker",
+    "sku": "SKLL-STICK-24",
+    "quantity": 0,
+    "materials": "Sticker paper, vinyl",
+    "category": "Sticker"
   },
   {
     "id": 1735417914086,
-    "name": "Calendar",
-    "sku": "112345",
+    "name": "Calendar 2025",
+    "sku": "CAL-2025",
     "quantity": 3,
-    "materials": "Paper",
-    "category": "Bookmark"
+    "materials": "PPD 200gsm Photo Paper Silk Matt (Amazon)",
+    "category": "Calendar"
+  },
+  {
+    "id": 1735419186629,
+    "name": "Christmas duckling sticker",
+    "sku": "DUCK-STICK-24",
+    "quantity": 4,
+    "materials": "Sticker paper, vinyl",
+    "category": "Sticker"
   }
 ]
