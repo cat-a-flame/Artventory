@@ -1,30 +1,34 @@
 [
   {
-    "id": 1734031778752,
-    "name": "Bookmark",
-    "sku": "232ö98öü",
-    "quantity": 14,
-    "materials": "Papers"
-  },
-  {
-    "id": 1734031786455,
-    "name": "Stickers",
-    "sku": "232",
-    "quantity": 102,
-    "materials": "Papers"
-  },
-  {
     "id": 1734032591885,
     "name": "JKlsjdloks",
     "sku": "5947",
-    "quantity": 1,
-    "materials": "Papers"
+    "quantity": 3,
+    "materials": "Papers",
+    "category": "Bookmark"
   },
   {
     "id": 1734032789036,
     "name": "Cica",
     "sku": "323232",
-    "quantity": 0,
-    "materials": "Papers"
+    "quantity": 6,
+    "materials": "Papers",
+    "category": "Sticker"
+  },
+  {
+    "id": 1735393573941,
+    "name": "My own product 2",
+    "sku": "10",
+    "quantity": 111111111111,
+    "materials": "Paper",
+    "category": "Greeting card"
+  },
+  {
+    "id": 1735394055792,
+    "name": "My own product 2",
+    "sku": "103",
+    "quantity": 111111111111,
+    "materials": "Paper",
+    "category": "Sticker"
   }
 ]

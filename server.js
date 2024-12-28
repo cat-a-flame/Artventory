@@ -4,31 +4,24 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-// Serve static files (e.g., HTML, CSS, JS) from the public folder
 app.use(express.static('public'));
-
-// Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Path to the JSON file where products are stored
 const productsFilePath = path.join(__dirname, 'products.json');
 
-// Function to read products from the JSON file
-function readProductsFromFile() {
+const readProductsFromFile = () => {
     try {
         const data = fs.readFileSync(productsFilePath, 'utf-8');
         return JSON.parse(data);
     } catch (error) {
         return []; // Return empty array if the file does not exist or an error occurs
     }
-}
+};
 
-// Function to write products to the JSON file
-function writeProductsToFile(products) {
+const writeProductsToFile = (products) => {
     fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-}
+};
 
-// Route to list all products (GET request)
 app.get('/list-inventory', (req, res) => {
     try {
         const products = readProductsFromFile();
@@ -39,17 +32,9 @@ app.get('/list-inventory', (req, res) => {
     }
 });
 
-// Route to add a new product (POST request)
 app.post('/add-product', (req, res) => {
-    const { name, sku, quantity, materials } = req.body;
-
-    const newProduct = {
-        id: Date.now(), // Use timestamp as a unique ID
-        name,
-        sku,
-        quantity,
-        materials,
-    };
+    const { name, sku, quantity, materials, category } = req.body;
+    const newProduct = { id: Date.now(), name, sku, quantity, materials, category };
 
     try {
         const products = readProductsFromFile();
@@ -62,12 +47,10 @@ app.post('/add-product', (req, res) => {
     }
 });
 
-// Route to edit an existing product (PUT request)
 app.put('/edit-product', (req, res) => {
-    const { id, name, sku, quantity, materials } = req.body;
+    const { id, name, sku, quantity, materials, category } = req.body;
 
-    // Validate that all necessary fields are present
-    if (!id || !name || !sku || !quantity || !materials) {
+    if (!id || !name || !sku || !quantity || !materials || !category) {
         return res.status(400).json({ message: 'All fields are required.' });
     }
 
@@ -79,10 +62,8 @@ app.put('/edit-product', (req, res) => {
             return res.status(404).json({ message: 'Product not found.' });
         }
 
-        // Update the product details
-        products[productIndex] = { id, name, sku, quantity, materials };
+        products[productIndex] = { id, name, sku, quantity, materials, category };
         writeProductsToFile(products);
-
         res.json({ message: 'Product updated successfully', product: products[productIndex] });
     } catch (error) {
         console.error('Error editing product:', error);
@@ -90,7 +71,21 @@ app.put('/edit-product', (req, res) => {
     }
 });
 
-// Start the server
+app.delete('/delete-product/:id', (req, res) => {
+    const { id } = req.params;
+
+    try {
+        let products = readProductsFromFile();
+        products = products.filter(product => product.id != id);
+
+        writeProductsToFile(products);
+        res.json({ message: 'Product deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting product:', error);
+        res.status(500).json({ message: 'There was an error deleting the product.' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

@@ -41,26 +41,20 @@ input, textarea {
     border-radius: 4px;
 }
 
-/* Toast message style */
-#toast {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #4CAF50;
+/* Toast message styles */
+.toast {
+    display: flex;
+    align-items: center;
+    background-color: #333;
     color: white;
-    text-align: center;
-    border-radius: 2px;
-    padding: 10px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    font-size: 17px;
-    transition: visibility 0s, opacity 0.5s linear;
+    padding: 16px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
-/* Show the toast message */
-#toast.show {
-    visibility: visible;
+.toast.show {
     opacity: 1;
 }
