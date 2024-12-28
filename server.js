@@ -8,10 +8,20 @@ app.use(express.static('public'));
 app.use(express.json());
 
 const productsFilePath = path.join(__dirname, 'products.json');
+const categoriesFilePath = path.join(__dirname, 'categories.json');
 
 const readProductsFromFile = () => {
     try {
         const data = fs.readFileSync(productsFilePath, 'utf-8');
+        return JSON.parse(data);
+    } catch (error) {
+        return []; // Return empty array if the file does not exist or an error occurs
+    }
+};
+
+const readCategoriesFromFile = () => {
+    try {
+        const data = fs.readFileSync(categoriesFilePath, 'utf-8');
         return JSON.parse(data);
     } catch (error) {
         return []; // Return empty array if the file does not exist or an error occurs
@@ -29,6 +39,32 @@ app.get('/list-inventory', (req, res) => {
     } catch (error) {
         console.error('Error reading products:', error);
         res.status(500).json({ message: 'Error fetching inventory' });
+    }
+});
+
+app.get('/list-categories', (req, res) => {
+    try {
+        const categories = readCategoriesFromFile();
+        res.json({ categories });
+    } catch (error) {
+        console.error('Error reading categories:', error);
+        res.status(500).json({ message: 'Error fetching categories' });
+    }
+});
+
+app.get('/filter', (req, res) => {
+    const { category } = req.query;
+    if (!category) {
+        return res.status(400).json({ message: 'Category is required' });
+    }
+
+    try {
+        const products = readProductsFromFile();
+        const filteredProducts = products.filter(product => product.category === category);
+        res.json({ products: filteredProducts });
+    } catch (error) {
+        console.error('Error filtering products:', error);
+        res.status(500).json({ message: 'Error filtering products' });
     }
 });
 
@@ -83,6 +119,25 @@ app.delete('/delete-product/:id', (req, res) => {
     } catch (error) {
         console.error('Error deleting product:', error);
         res.status(500).json({ message: 'There was an error deleting the product.' });
+    }
+});
+
+app.get('/search', (req, res) => {
+    const { query } = req.query;
+    if (!query) {
+        return res.status(400).json({ message: 'Query is required' });
+    }
+
+    try {
+        const products = readProductsFromFile();
+        const filteredProducts = products.filter(product =>
+            product.name.toLowerCase().includes(query.toLowerCase()) ||
+            product.sku.toLowerCase().includes(query.toLowerCase())
+        );
+        res.json({ products: filteredProducts });
+    } catch (error) {
+        console.error('Error searching products:', error);
+        res.status(500).json({ message: 'Error searching products' });
     }
 });
 

@@ -1,23 +1,17 @@
 // Function to show toast messages
 function showToast(message, type = 'success') {
     const toastContainer = document.getElementById('toast-container');
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.style.backgroundColor = type === 'success' ? '#4caf50' : '#f44336'; // Green for success, red for error
-    toast.textContent = message;
-
-    toastContainer.appendChild(toast);
+    toastContainer.innerHTML = message;
 
     // Show the toast
     setTimeout(() => {
-        toast.classList.add('show');
+        toastContainer.classList.add('show');
     }, 100);
 
     // Hide the toast after 3 seconds
     setTimeout(() => {
-        toast.classList.remove('show');
-        toastContainer.removeChild(toast);
-    }, 3100);
+        toastContainer.classList.remove('show');
+    }, 2900);
 }
 
 // Function to fetch and display the inventory
@@ -36,9 +30,9 @@ const getInventory = async () => {
                 <td>${product.quantity}</td>
                 <td>${product.materials}</td>
                 <td>${product.category}</td>
-                <td>
-                    <button onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}')">Edit</button>
-                    <button onclick="deleteProduct(${product.id})">Delete</button>
+                <td class="action-cell">
+                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -49,6 +43,118 @@ const getInventory = async () => {
     }
 };
 
+// Function to fetch and display categories in the select inputs
+const getCategories = async () => {
+    try {
+        const response = await fetch('/list-categories');
+        const data = await response.json();
+        console.log(data); // Log the response data to check its structure
+
+        if (!Array.isArray(data.categories)) {
+            throw new Error('Categories is not an array');
+        }
+
+        const addCategorySelect = document.getElementById('category');
+        const editCategorySelect = document.getElementById('editCategory');
+        const filterCategorySelect = document.getElementById('filterCategory');
+
+        // Clear current options
+        addCategorySelect.innerHTML = '<option value="">Select category</option>';
+        editCategorySelect.innerHTML = '<option value="">Select category</option>';
+        filterCategorySelect.innerHTML = '<option value="">Filter category</option>';
+
+        // Populate the select inputs with categories
+        data.categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            addCategorySelect.appendChild(option);
+            editCategorySelect.appendChild(option.cloneNode(true));
+            filterCategorySelect.appendChild(option.cloneNode(true));
+        });
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        showToast('There was an error fetching the categories.', 'error');
+    }
+};
+
+// Function to search products
+const searchProducts = async () => {
+    const query = document.getElementById('searchInput').value;
+    if (!query) {
+        showToast('Please enter a search query.', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/search?query=${query}`);
+        const data = await response.json();
+        const tableBody = document.querySelector('#inventory-table tbody');
+        tableBody.innerHTML = '';
+
+        data.products.forEach(product => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${product.name}</td>
+                <td>${product.sku}</td>
+                <td>${product.quantity}</td>
+                <td>${product.materials}</td>
+                <td>${product.category}</td>
+                <td class="action-cell">
+                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error searching products:', error);
+        showToast('There was an error searching the inventory.', 'error');
+    }
+};
+
+// Function to filter products by category
+const filterByCategory = async () => {
+    const category = document.getElementById('filterCategory').value;
+    if (!category) {
+        showToast('Please select a category to filter.', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/filter?category=${category}`);
+        const data = await response.json();
+        const tableBody = document.querySelector('#inventory-table tbody');
+        tableBody.innerHTML = '';
+
+        data.products.forEach(product => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${product.name}</td>
+                <td>${product.sku}</td>
+                <td>${product.quantity}</td>
+                <td>${product.materials}</td>
+                <td>${product.category}</td>
+                <td class="action-cell">
+                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error filtering products:', error);
+        showToast('There was an error filtering the inventory.', 'error');
+    }
+};
+
+// Function to reset search and filters
+const resetSearch = async () => {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('filterCategory').value = '';
+    await getInventory();
+};
+
 // Function to delete a product
 const deleteProduct = async (id) => {
     if (confirm('Are you sure you want to delete this product?')) {
@@ -56,7 +162,7 @@ const deleteProduct = async (id) => {
             const response = await fetch(`/delete-product/${id}`, { method: 'DELETE' });
             if (response.ok) {
                 getInventory();
-                showToast('Product deleted successfully');
+                showToast('<i class="fa-solid fa-check h-icon"></i> Product deleted successfully');
             } else {
                 showToast('Error deleting product', 'error');
             }
@@ -83,6 +189,13 @@ document.getElementById('openModalButton').onclick = () => document.getElementBy
 document.getElementById('closeDialogButton').onclick = () => document.getElementById('addProductDialog').close();
 document.getElementById('closeEditDialogButton').onclick = () => document.getElementById('editProductDialog').close();
 
+// Event listener for search input to trigger search on Enter key press
+document.getElementById('searchInput').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        searchProducts();
+    }
+});
+
 // Handle adding a new product
 document.getElementById('addProductForm').onsubmit = async (event) => {
     event.preventDefault();
@@ -105,7 +218,7 @@ document.getElementById('addProductForm').onsubmit = async (event) => {
         if (response.ok) {
             document.getElementById('addProductDialog').close();
             getInventory();
-            showToast('Product added successfully');
+            showToast('<i class="fa-solid fa-check h-icon"></i> Product added successfully');
         } else {
             showToast('Error adding product', 'error');
         }
@@ -138,7 +251,7 @@ document.getElementById('editProductForm').onsubmit = async (event) => {
         if (response.ok) {
             document.getElementById('editProductDialog').close();
             getInventory();
-            showToast('Product updated successfully');
+            showToast('<i class="fa-solid fa-check h-icon"></i> Product updated successfully');
         } else {
             showToast('Error updating product', 'error');
         }
@@ -148,5 +261,8 @@ document.getElementById('editProductForm').onsubmit = async (event) => {
     }
 };
 
-// Load inventory on page load
-window.onload = getInventory;
+// Load inventory and categories on page load
+window.onload = () => {
+    getInventory();
+    getCategories();
+};

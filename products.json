@@ -1,25 +1,9 @@
 [
   {
-    "id": 1734032591885,
-    "name": "JKlsjdloks",
-    "sku": "5947",
-    "quantity": 3,
-    "materials": "Papers",
-    "category": "Bookmark"
-  },
-  {
-    "id": 1734032789036,
-    "name": "Cica",
-    "sku": "323232",
-    "quantity": 6,
-    "materials": "Papers",
-    "category": "Sticker"
-  },
-  {
     "id": 1735393573941,
     "name": "My own product 2",
     "sku": "10",
-    "quantity": 111111111111,
+    "quantity": 5,
     "materials": "Paper",
     "category": "Greeting card"
   },
@@ -27,8 +11,16 @@
     "id": 1735394055792,
     "name": "My own product 2",
     "sku": "103",
-    "quantity": 111111111111,
+    "quantity": 4,
     "materials": "Paper",
-    "category": "Sticker"
+    "category": "Bookmark"
+  },
+  {
+    "id": 1735417914086,
+    "name": "Calendar",
+    "sku": "112345",
+    "quantity": 3,
+    "materials": "Paper",
+    "category": "Bookmark"
   }
 ]
