@@ -29,17 +29,23 @@ main {
     }
 }
 
+.section-title {
+    font-family: var(--title-font);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 button {
     font-size: 1rem;
 }
 
 table {
     border-collapse: collapse;
-    margin-top: 2rem;
-    width: 100%;
-    box-shadow: 0 0 10px #7e95a64a;
     border-radius: 4px;
+    box-shadow: 0 0 10px #7e95a64a;
     overflow: hidden;
+    width: 100%;
 }
 
 th, td {

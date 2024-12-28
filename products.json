@@ -5,7 +5,8 @@
     "sku": "SKLL-STICK-24",
     "quantity": 0,
     "materials": "Sticker paper, vinyl",
-    "category": "Sticker"
+    "category": "Sticker",
+    "type": "Regular"
   },
   {
     "id": 1735417914086,
@@ -13,7 +14,8 @@
     "sku": "CAL-2025",
     "quantity": 3,
     "materials": "PPD 200gsm Photo Paper Silk Matt (Amazon)",
-    "category": "Calendar"
+    "category": "Calendar",
+    "type": "Regular"
   },
   {
     "id": 1735419186629,
@@ -21,6 +23,25 @@
     "sku": "DUCK-STICK-24",
     "quantity": 4,
     "materials": "Sticker paper, vinyl",
-    "category": "Sticker"
+    "category": "Sticker",
+    "type": "Regular"
+  },
+  {
+    "id": 1,
+    "name": "Test sticker",
+    "sku": "112345",
+    "quantity": 2,
+    "materials": "tzt",
+    "category": "Bookmark",
+    "type": "Oopsie"
+  },
+  {
+    "id": 2,
+    "name": "Jingle all the way",
+    "sku": "JNGL-BM-24",
+    "quantity": 4,
+    "materials": "300gsm paper",
+    "category": "Bookmark",
+    "type": "Oopsie"
   }
 ]

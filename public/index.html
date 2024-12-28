@@ -8,14 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <main>
         <div class="content-top">
             <h1 class="title">Artventory</h1>
-
             <button id="openModalButton">
                 <i class="fa-solid fa-plus"></i>
                 Add new item
@@ -23,70 +21,83 @@
         </div>
 
         <div class="search-area">
-            <input type="text" id="searchInput" placeholder="Search by name or SKU">
-            <!--button class="action-button" onclick="searchProducts()"><i class="fa-solid fa-magnifying-glass"></i></button-->
-
+            <input type="text" id="searchInput" placeholder="Search by name, category or SKU">
             <div>
                 <select id="filterCategory">
                     <option value="">Filter category</option>
                     <!-- Add options dynamically based on categories available -->
                 </select>
-        
                 <button class="ghost-button" onclick="resetSearch()">Reset view</button>
             </div>
         </div>
 
-
-        <table id="inventory-table">
+        <h2 class="section-title">Regular products</h2>
+        <table id="regular-table">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>SKU</th>
                     <th>Quantity</th>
-                    <!--th>Materials</th-->
                     <th>Category</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Inventory rows will be inserted here -->
+                <!-- Regular products will be listed here -->
+            </tbody>
+        </table>
+
+        <h2 class="section-title">Oopsie products</h2>
+        <table id="oopsie-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                    <th>Category</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Oopsie products will be listed here -->
             </tbody>
         </table>
     </main>
 
     <dialog id="addProductDialog">
         <h2 class="dialog-title">Add new item</h2>
-
         <form id="addProductForm">
             <div class="form-row">
                 <label class="form-label" for="productName">Item name</label>
                 <input class="form-input" type="text" id="productName" name="productName" required>
             </div>
-            
             <div class="form-row">
                 <label class="form-label" for="sku">SKU</label>
                 <input class="form-input" type="text" id="sku" name="sku" required>
             </div>
-
-            <div class="form-fields">            
+            <div class="form-fields">
                 <div class="form-row h-flex-grow">
                     <label class="form-label" for="category">Category</label>
                     <select class="form-input" id="category" name="category" required>
                         <!-- Add options dynamically based on categories available -->
                     </select>
                 </div>
-
                 <div class="form-row">
                     <label class="form-label" for="quantity">Quantity</label>
                     <input class="form-input quantity" type="number" id="quantity" name="quantity" required min="0">
                 </div>
             </div>
-
             <div class="form-row">
                 <label class="form-label" for="materials">Materials</label>
                 <textarea class="form-input" id="materials" name="materials" required></textarea>
             </div>
-            
+            <div class="form-row">
+                <label class="form-label" for="type">Type</label>
+                <select class="form-input" id="type" name="type" required>
+                    <option value="Regular">Regular</option>
+                    <option value="Oopsie">Oopsie</option>
+                </select>
+            </div>
             <div class="button-wrapper">
                 <button class="ghost-button" id="closeDialogButton" type="reset">Cancel</button>
                 <button class="primary-button" type="submit">Add Product</button>
@@ -96,19 +107,16 @@
 
     <dialog id="editProductDialog">
         <h2 class="dialog-title">Edit item</h2>
-
         <form id="editProductForm">
             <div class="form-row">
                 <input type="hidden" id="editProductId">
                 <label class="form-label" for="editProductName">Item name</label>
                 <input class="form-input" type="text" id="editProductName" name="editProductName" required>
             </div>
-            
             <div class="form-row">
                 <label class="form-label" for="editSku">SKU</label>
                 <input class="form-input" type="text" id="editSku" name="editSku" required>
             </div>
-
             <div class="form-fields">
                 <div class="form-row h-flex-grow">
                     <label class="form-label" for="editCategory">Category</label>
@@ -116,18 +124,22 @@
                         <!-- Add options dynamically based on categories available -->
                     </select>
                 </div>
-                
                 <div class="form-row">
                     <label class="form-label" for="editQuantity">Quantity</label>
                     <input class="form-input quantity" type="number" id="editQuantity" name="editQuantity" required min="0">
                 </div>
             </div>
-            
             <div class="form-row">
                 <label class="form-label" for="editMaterials">Materials</label>
                 <textarea class="form-input" id="editMaterials" name="editMaterials" required></textarea>
             </div>
-
+            <div class="form-row">
+                <label class="form-label" for="editType">Type</label>
+                <select class="form-input" id="editType" name="editType" required>
+                    <option value="Regular">Regular</option>
+                    <option value="Oopsie">Oopsie</option>
+                </select>
+            </div>
             <div class="button-wrapper">
                 <button class="ghost-button" id="closeEditDialogButton" type="reset">Cancel</button>
                 <button class="primary-button" type="submit">Save changes</button>
