@@ -125,6 +125,25 @@ select {
     margin-top: 0.5rem;
 }
 
+.quantity-badge {
+    background-color: #e4e1eaad;
+    border-radius: 4px;
+    display: inline-block;
+    padding: .4rem .6rem;
+
+    &.out-of-stock {
+        background-color: #e35d80;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    &.low-stock {
+        background-color: #b6aacb;
+        color: #fff;
+        font-weight: 600;
+    }
+}
+
 /* Button to open the dialog */
 #openModalButton {
     align-items: center;

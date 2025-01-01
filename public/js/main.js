@@ -29,12 +29,21 @@ const getInventory = async () => {
 
         data.products.forEach(product => {
             const row = document.createElement('tr');
+
+            // Determine the class for the quantity cell
+            let quantityClass = '';
+            if (product.quantity === 0) {
+                quantityClass = 'out-of-stock';
+            } else if (product.quantity > 0 && product.quantity <= 5) {
+                quantityClass = 'low-stock';
+            }
+            
             row.innerHTML = `
                 <td>
                     <div class="item-name">${product.name}</div>
                     <div class="item-sku">${product.sku}</div>
                 </td>
-                <td>${product.quantity}</td>
+                <td><div class="quantity-badge ${quantityClass}">${product.quantity}</div></td>
                 <td>${product.category}</td>
                 <td class="action-cell">
                     <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}', '${product.type}')">
@@ -120,7 +129,7 @@ const searchProducts = async () => {
                     <div class="item-name">${product.name}</div>
                     <div class="item-sku">${product.sku}</div>
                 </td>
-                <td>${product.quantity}</td>
+                <td><div class="quantity-badge">${product.quantity}</div></td>
                 <td>${product.category}</td>
                 <td class="action-cell">
                     <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}', '${product.type}')">
@@ -167,7 +176,7 @@ const filterByCategory = async () => {
                     <div class="item-name">${product.name}</div>
                     <div class="item-sku">${product.sku}</div>
                 </td>
-                <td>${product.quantity}</td>
+                <td><div class="quantity-badge">${product.quantity}</div></td>
                 <td>${product.category}</td>
                 <td class="action-cell">
                     <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}', '${product.type}')">
