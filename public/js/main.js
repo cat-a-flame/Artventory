@@ -30,8 +30,10 @@ const getInventory = async () => {
         data.products.forEach(product => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${product.name}</td>
-                <td>${product.sku}</td>
+                <td>
+                    <div class="item-name">${product.name}</div>
+                    <div class="item-sku">${product.sku}</div>
+                </td>
                 <td>${product.quantity}</td>
                 <td>${product.category}</td>
                 <td class="action-cell">
@@ -114,8 +116,10 @@ const searchProducts = async () => {
         data.products.forEach(product => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${product.name}</td>
-                <td>${product.sku}</td>
+                <td>
+                    <div class="item-name">${product.name}</div>
+                    <div class="item-sku">${product.sku}</div>
+                </td>
                 <td>${product.quantity}</td>
                 <td>${product.category}</td>
                 <td class="action-cell">
@@ -159,8 +163,10 @@ const filterByCategory = async () => {
         data.products.forEach(product => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${product.name}</td>
-                <td>${product.sku}</td>
+                <td>
+                    <div class="item-name">${product.name}</div>
+                    <div class="item-sku">${product.sku}</div>
+                </td>
                 <td>${product.quantity}</td>
                 <td>${product.category}</td>
                 <td class="action-cell">

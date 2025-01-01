@@ -51,6 +51,7 @@ table {
 th, td {
     padding: .8rem;
     text-align: left;
+    vertical-align: middle;
 
     &.action-cell {
         text-align: right;
@@ -113,6 +114,15 @@ select {
 
 select {
     padding: .75rem 1rem;
+}
+
+.item-name {
+    font-weight: 600;
+}
+
+.item-sku {
+    font-size: .8rem;
+    margin-top: 0.5rem;
 }
 
 /* Button to open the dialog */
