@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artventory</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <script src="https://kit.fontawesome.com/cd9ec28620.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,6 +144,15 @@
                 <button class="primary-button" type="submit">Save changes</button>
             </div>
         </form>
+    </dialog>
+
+    <dialog id="errorDialog">
+        <h2 class="dialog-title">Item out of stock!</h2>
+        <p class="error-message" id="errorMessage"></p>
+
+        <div class="button-wrapper">
+            <button class="primary-button" id="closeErrorDialogButton">Ok</button>
+        </div>
     </dialog>
 
     <div id="toast-container" class="toast"></div>

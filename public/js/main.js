@@ -14,6 +14,12 @@ function showToast(message, type = 'success') {
     }, 2900);
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Existing code to fetch and display inventory
+    getInventory();
+    getCategories();
+});
+
 // Function to fetch and display the inventory
 const getInventory = async () => {
     try {
@@ -69,7 +75,6 @@ const getCategories = async () => {
     try {
         const response = await fetch('/list-categories');
         const data = await response.json();
-        console.log(data); // Log the response data to check its structure
 
         if (!Array.isArray(data.categories)) {
             throw new Error('Categories is not an array');

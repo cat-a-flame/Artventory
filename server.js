@@ -163,6 +163,33 @@ app.get('/search', (req, res) => {
     }
 });
 
+// New endpoint to update product quantity
+app.put('/update-product/:id', (req, res) => {
+    const { id } = req.params;
+    const { quantity } = req.body;
+
+    if (isNaN(parseInt(quantity))) {
+        return res.status(400).json({ message: 'Quantity must be a number.' });
+    }
+
+    try {
+        const products = readProductsFromFile();
+        const productIndex = products.findIndex(product => product.id == id);
+
+        if (productIndex === -1) {
+            return res.status(404).json({ message: 'Product not found.' });
+        }
+
+        products[productIndex].quantity = quantity;
+        products[productIndex].updatedAt = new Date().toISOString();
+        writeProductsToFile(products);
+        res.json({ message: 'Product quantity updated successfully', product: products[productIndex] });
+    } catch (error) {
+        console.error('Error updating product quantity:', error);
+        res.status(500).json({ message: 'There was an error updating the product quantity.' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

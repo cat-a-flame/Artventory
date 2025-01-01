@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanning</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://kit.fontawesome.com/cd9ec28620.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main>
+        <div class="content-top">
+            <h1 class="title">Artventory</h1>
+        </div>
+
+        <div class="scanning-area">
+            <h2>Start scanning your items</h2>
+            <img src="images\scan_barcode.png" alt="Barcode" class="barcode-image" style="width: 300px">
+            <input type="text" id="barcodeInput" class="hidden-input" autofocus>
+        </div>
+        
+        <ul id="scannedItemsList"></ul>
+        
+        <button id="backButton" class="back-button">Back to Inventory</button>
+    </main>
+
+    <dialog id="errorDialog">
+        <h2 class="dialog-title">Item out of stock!</h2>
+        <p class="error-message" id="errorMessage"></p>
+
+        <div class="button-wrapper">
+            <button class="primary-button" id="closeErrorDialogButton">Ok</button>
+        </div>
+    </dialog>
+
+    <div id="toast-container" class="toast"></div>
+
+    <script src="js/scan.js"></script>
+</body>
+</html>

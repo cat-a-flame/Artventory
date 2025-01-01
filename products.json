@@ -14,12 +14,12 @@
     "id": 2,
     "name": "Calendar 2025",
     "sku": "CAL-2025",
-    "quantity": 999,
+    "quantity": 59,
     "materials": "PPD 200gsm Photo Paper Silk Matt (Amazon)",
     "category": "Calendar",
     "type": "Regular",
     "createdAt": "2024-12-01T12:00:00Z",
-    "updatedAt": "2025-01-01T12:20:32.035Z"
+    "updatedAt": "2025-01-01T15:05:19.846Z"
   },
   {
     "id": 3,
@@ -35,13 +35,13 @@
   {
     "id": 5,
     "name": "Astronaut cat bookmark",
-    "sku": "545",
-    "quantity": 1,
+    "sku": "9780201379624",
+    "quantity": 14,
     "materials": "Paper",
     "category": "Bookmark",
     "type": "Regular",
     "createdAt": "2025-01-01T13:17:33.722Z",
-    "updatedAt": "2025-01-01T13:17:33.722Z"
+    "updatedAt": "2025-01-01T15:05:18.791Z"
   },
   {
     "id": 6,
@@ -64,5 +64,16 @@
     "type": "Regular",
     "createdAt": "2025-01-01T13:21:46.977Z",
     "updatedAt": "2025-01-01T13:22:45.801Z"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Sleepy cat",
+    "sku": "64564654979879",
+    "quantity": 5,
+    "materials": "Paper",
+    "category": "Bookmark",
+    "type": "Oopsie",
+    "createdAt": "2025-01-01T15:05:06.540Z",
+    "updatedAt": "2025-01-01T15:05:06.540Z"
   }
 ]
