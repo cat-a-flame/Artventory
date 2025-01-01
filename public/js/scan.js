@@ -24,15 +24,19 @@ function showErrorDialog(message) {
 
 // Object to keep track of scanned items and their quantities
 let scannedItems = {};
+let totalScannedItems = 0; // Initialize the total number of scanned items
+
+// Function to update the total number of scanned items in the HTML
+function updateTotalScannedItems() {
+    document.getElementById('totalScannedItems').innerHTML = `<span>Total items</span> ${totalScannedItems}`;
+}
 
 // Function to handle barcode input
 async function handleBarcodeInput(barcode) {
     if (barcode) {
         try {
-            console.log(`Searching for SKU: ${barcode}`); // Debugging line
             const response = await fetch('/list-inventory');
             const data = await response.json();
-            console.log('Fetched Inventory:', data.products); // Debugging line
             const item = data.products.find(product => product.sku === barcode);
 
             if (item) {
@@ -53,8 +57,9 @@ async function handleBarcodeInput(barcode) {
                         } else {
                             scannedItems[item.name] = 1;
                         }
+                        totalScannedItems++; // Increment the total number of scanned items
                         addScannedItem(item.name); // Update the scanned items list
-                        showToast(`Scanned: ${item.name}`);
+                        updateTotalScannedItems(); // Update the total scanned items display
                     } else {
                         const errorMsg = await updateResponse.text();
                         showToast(`Failed to update the item quantity: ${errorMsg}`, 'error');
@@ -76,16 +81,20 @@ async function handleBarcodeInput(barcode) {
 // Function to add a scanned item to the list
 function addScannedItem(name) {
     const scannedItemsList = document.getElementById('scannedItemsList');
+    const scannedItemsWrapper = document.getElementById('scannedItemsWrapper');
+    const noScannedItems = document.getElementById('noScannedItems');
     let listItem = document.getElementById(`scanned-${name.replace(/\s+/g, '-')}`);
 
     if (listItem) {
         // Update the existing list item
-        listItem.innerHTML = `<b>${name}</b>: ${scannedItems[name]} scanned`;
+        listItem.innerHTML = `<span>${name}</span> ${scannedItems[name]}`;
     } else {
         // Create a new list item
+        scannedItemsWrapper.classList.add('h-show');
+        noScannedItems.classList.add('h-hide');
         listItem = document.createElement('li');
         listItem.id = `scanned-${name.replace(/\s+/g, '-')}`;
-        listItem.innerHTML = `<b>${name}</b>: ${scannedItems[name]} scanned`;
+        listItem.innerHTML = `<span>${name}</span> ${scannedItems[name]}`;
         scannedItemsList.appendChild(listItem);
     }
 }
@@ -101,11 +110,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Clear the input field for the next scan
         e.target.value = '';
     });
-
-    const backButton = document.getElementById('backButton');
-    backButton.onclick = () => {
-        window.location.href = '/'; // Redirect to the main inventory page
-    };
 
     const closeErrorDialogButton = document.getElementById('closeErrorDialogButton');
     closeErrorDialogButton.onclick = () => document.getElementById('errorDialog').close();

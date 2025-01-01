@@ -10,7 +10,7 @@ app.use(express.json());
 const productsFilePath = path.join(__dirname, 'products.json');
 const categoriesFilePath = path.join(__dirname, 'categories.json');
 
-let currentId = 1
+app.use('/_includes', express.static(path.join(__dirname, '_includes')));
 
 const readProductsFromFile = () => {
     try {
