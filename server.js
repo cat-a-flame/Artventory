@@ -71,17 +71,14 @@ app.get('/filter', (req, res) => {
 });
 
 app.post('/add-product', (req, res) => {
-    const { name, sku, quantity, materials, category, type } = req.body;
+    const { name, sku, quantity, category, variant } = req.body;
     const newProduct = {
         id: Date.now(),
         name,
         sku,
         quantity,
-        materials,
         category,
-        type,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        variant
     };
 
     try {
@@ -96,9 +93,9 @@ app.post('/add-product', (req, res) => {
 });
 
 app.put('/edit-product', (req, res) => {
-    const { id, name, sku, quantity, materials, category, type } = req.body;
+    const { id, name, sku, quantity, category, variant } = req.body;
 
-    if ((!name || !materials || !category || !type) || (!sku || isNaN(parseInt(quantity)))) {
+    if ((!name || !category || !variant) || (!sku || isNaN(parseInt(quantity)))) {
         return res.status(400).json({ message: 'All fields are required.' });
     }
 
@@ -115,10 +112,8 @@ app.put('/edit-product', (req, res) => {
             name,
             sku,
             quantity,
-            materials,
             category,
-            type,
-            updatedAt: new Date().toISOString()
+            variant
         };
         writeProductsToFile(products);
         res.json({ message: 'Product updated successfully', product: products[productIndex] });
@@ -181,7 +176,6 @@ app.put('/update-product/:id', (req, res) => {
         }
 
         products[productIndex].quantity = quantity;
-        products[productIndex].updatedAt = new Date().toISOString();
         writeProductsToFile(products);
         res.json({ message: 'Product quantity updated successfully', product: products[productIndex] });
     } catch (error) {

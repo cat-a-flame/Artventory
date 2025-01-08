@@ -1,79 +1,370 @@
 [
   {
-    "id": 1,
-    "name": "Skull and crow sticker",
-    "sku": "SKLL-STICK-24",
-    "quantity": 0,
-    "materials": "Sticker paper, vinyl",
-    "category": "Sticker",
-    "type": "Regular",
-    "createdAt": "2024-12-01T12:00:00Z",
-    "updatedAt": "2025-01-01T17:01:32.196Z"
-  },
-  {
-    "id": 2,
-    "name": "Calendar 2025",
-    "sku": "CAL-2025",
-    "quantity": 99,
-    "materials": "PPD 200gsm Photo Paper Silk Matt (Amazon)",
-    "category": "Calendar",
-    "type": "Regular",
-    "createdAt": "2024-12-01T12:00:00Z",
-    "updatedAt": "2025-01-01T17:22:38.123Z"
-  },
-  {
-    "id": 3,
-    "name": "Christmas duckling sticker",
-    "sku": "DUCK-STICK-24",
-    "quantity": 7,
-    "materials": "Sticker paper, vinyl",
-    "category": "Sticker",
-    "type": "Regular",
-    "createdAt": "2024-12-01T12:00:00Z",
-    "updatedAt": "2025-01-01T12:35:36.530Z"
-  },
-  {
-    "id": 5,
+    "id": 1735743906540,
     "name": "Astronaut cat bookmark",
-    "sku": "9780201379624",
-    "quantity": 97,
-    "materials": "Paper",
+    "sku": "AST-001",
+    "quantity": 3,
     "category": "Bookmark",
-    "type": "Regular",
-    "createdAt": "2025-01-01T13:17:33.722Z",
-    "updatedAt": "2025-01-01T17:08:51.484Z"
+    "variant": "Regular"
   },
   {
-    "id": 6,
-    "name": "Test",
-    "sku": "232EIC",
-    "quantity": 54,
-    "materials": "Paper",
-    "category": "Greeting card",
-    "type": "Oopsie",
-    "createdAt": "2025-01-01T13:18:26.129Z",
-    "updatedAt": "2025-01-01T13:18:26.129Z"
+    "id": 1735743906541,
+    "name": "Astronaut cat bookmark",
+    "sku": "AST-002",
+    "quantity": 2,
+    "category": "Bookmark",
+    "variant": "Oopsie"
   },
   {
-    "id": 1735737706977,
-    "name": "UX designer sticker",
-    "sku": "STCKR-UX-24",
-    "quantity": 9999,
-    "materials": "Paper",
+    "id": 1735743906542,
+    "name": "Astronaut cat sticker",
+    "sku": "AST-003",
+    "quantity": 3,
     "category": "Sticker",
-    "type": "Regular",
-    "createdAt": "2025-01-01T13:21:46.977Z",
-    "updatedAt": "2025-01-01T13:22:45.801Z"
+    "variant": "Regular"
   },
   {
     "id": 1735743906540,
-    "name": "Sleepy cat",
-    "sku": "64564654979879",
-    "quantity": 5,
-    "materials": "Paper",
+    "name": "Calendar 2025",
+    "sku": "CAL-004",
+    "quantity": 1,
+    "category": "Calendar",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Cassette tape love card",
+    "sku": "CAS-005",
+    "quantity": 14,
+    "category": "Greeting card",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Christmas book-tree bookmark",
+    "sku": "CHR-006",
+    "quantity": 0,
     "category": "Bookmark",
-    "type": "Oopsie",
-    "createdAt": "2025-01-01T15:05:06.540Z",
-    "updatedAt": "2025-01-01T15:05:06.540Z"
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Christmas book-tree bookmark",
+    "sku": "CHR-007",
+    "quantity": 4,
+    "category": "Bookmark",
+    "variant": "Oopsie"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Christmas duckling sticker - with overlay",
+    "sku": "CHR-008",
+    "quantity": 6,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Christmas duckling sticker - no overlay",
+    "sku": "CHR-009",
+    "quantity": 4,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Christmas gift box sticker sheet \"Little gifts\"",
+    "sku": "CHR-010",
+    "quantity": 1,
+    "category": "Sticker sheet",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Christmas gift tags",
+    "sku": "CHR-011",
+    "quantity": 3,
+    "category": "Gift tag",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Cute handmade Easter greeting card",
+    "sku": "CUT-012",
+    "quantity": 1,
+    "category": "Greeting card",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Dachshund Valentine's Day card",
+    "sku": "DAC-013",
+    "quantity": 15,
+    "category": "Greeting card",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Easter greeting card",
+    "sku": "EAS-014",
+    "quantity": 1,
+    "category": "Greeting card",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive bear Christmas sticker - with overlay",
+    "sku": "FES-015",
+    "quantity": 2,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive bear Christmas sticker - with overlay",
+    "sku": "FES-016",
+    "quantity": 2,
+    "category": "Sticker",
+    "variant": "Oopsie"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive book-tree sticker - with overlay",
+    "sku": "FES-017",
+    "quantity": 3,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive book-tree sticker - no overlay",
+    "sku": "FES-018",
+    "quantity": 10,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive book-tree sticker - no overlay",
+    "sku": "FES-019",
+    "quantity": 1,
+    "category": "Sticker",
+    "variant": "Oopsie"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive robin sticker - with overlay",
+    "sku": "FES-020",
+    "quantity": 4,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive robin sticker - no overlay",
+    "sku": "FES-021",
+    "quantity": 4,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Festive robin sticker - no overlay",
+    "sku": "FES-022",
+    "quantity": 2,
+    "category": "Sticker",
+    "variant": "Oopsie"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Gingerbread sticker sheet",
+    "sku": "GIN-023",
+    "quantity": 2,
+    "category": "Sticker sheet",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Mix tape cassette sticker - with overlay",
+    "sku": "MIX-024",
+    "quantity": 1,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Mushroom magnetic bookmark - small",
+    "sku": "MUS-025",
+    "quantity": 11,
+    "category": "Bookmark",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Mushroom magnetic bookmark - medium",
+    "sku": "MUS-026",
+    "quantity": 3,
+    "category": "Bookmark",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Mushroom magnetic bookmark - tall",
+    "sku": "MUS-027",
+    "quantity": 4,
+    "category": "Bookmark",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Party dachshund sticker - with overlay",
+    "sku": "PAR-028",
+    "quantity": 7,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Pixel art cat at a flower stand sticker - with overlay",
+    "sku": "PIX-029",
+    "quantity": 3,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Raccoon illustration art print",
+    "sku": "RAC-030",
+    "quantity": 0,
+    "category": "Art print",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Sarcastic UX designer sticker - with overlay",
+    "sku": "SAR-031",
+    "quantity": 2,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Sarcastic UX designer sticker - with overlay",
+    "sku": "SAR-032",
+    "quantity": 2,
+    "category": "Sticker",
+    "variant": "Oopsie"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Shopping list notepad",
+    "sku": "SHO-033",
+    "quantity": 0,
+    "category": "Notepad",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Skull and crow sticker",
+    "sku": "SKU-034",
+    "quantity": 0,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Sleeping cat bookmark",
+    "sku": "SLE-035",
+    "quantity": 0,
+    "category": "Bookmark",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Snowcat bookmark",
+    "sku": "SNO-036",
+    "quantity": 1,
+    "category": "Bookmark",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Snowcat bookmark",
+    "sku": "SNO-037",
+    "quantity": 4,
+    "category": "Bookmark",
+    "variant": "Oopsie"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Snowcat vinyl sticker - with overlay",
+    "sku": "SNO-038",
+    "quantity": 4,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Snowcat vinyl sticker - with overlay",
+    "sku": "SNO-039",
+    "quantity": 1,
+    "category": "Sticker",
+    "variant": "Oopsie"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Snowcat vinyl sticker - no overlay",
+    "sku": "SNO-040",
+    "quantity": 3,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Spooky Halloween sticker sheet",
+    "sku": "SPO-041",
+    "quantity": 3,
+    "category": "Sticker sheet",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Stay wonderful | Motivational capybara sticker - with overlay",
+    "sku": "STA-042",
+    "quantity": 5,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Surfing melon sticker - with overlay",
+    "sku": "SUR-043",
+    "quantity": 4,
+    "category": "Sticker",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Thank you card - polaroid - autumn",
+    "sku": "THA-044",
+    "quantity": 10,
+    "category": "Thank you card",
+    "variant": "Regular"
+  },
+  {
+    "id": 1735743906540,
+    "name": "Thank you card - polaroid - Christmas 2024",
+    "sku": "THA-045",
+    "quantity": 2,
+    "category": "Thank you card",
+    "variant": "Regular"
+  },
+  {
+    "id": 1736358607719,
+    "name": "aaaa",
+    "sku": "test-item",
+    "quantity": 99,
+    "category": "Greeting card",
+    "variant": "Regular"
   }
 ]

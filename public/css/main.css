@@ -1,15 +1,19 @@
 @import "reset.css";
 
 :root {
-    --title-font: "PT Serif", serif;
     --brand-color: #9986ac;
+    --box-shadow: 0px 2px 4px 0px rgba(162, 166, 187, 0.50);
+    --label-color: #957D9D;
+    --title-font: "Source Serif 4", serif;
+    --text-color: #725A79;
 }
 
 body {
-    background-color: #f5f9fa;
-    color: #6c5c7c;
-    font-family: "Nunito", serif;
+    background: #F4F6FA;
+    color: var(--text-color);
+    font-family: "Quicksand", serif;
     font-size: 16px;
+    font-weight: 500;
     line-height: 1.4;
     padding: 2rem;
 }
@@ -42,19 +46,26 @@ main {
 }
 
 button {
+    font-family: "Quicksand", serif;
     font-size: 1rem;
+    font-weight: 500;
+}
+
+.table-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
 }
 
 table {
     border-collapse: collapse;
-    border-radius: 4px;
-    box-shadow: 0 0 10px #7e95a64a;
     overflow: hidden;
     width: 100%;
 }
 
-th, td {
-    padding: .8rem;
+th,
+td {
+    padding: .75rem 1.25rem;
     text-align: left;
     vertical-align: middle;
 
@@ -63,17 +74,13 @@ th, td {
         width: 95px;
     }
 }
+
 th {
-    background-color: #c1b2c7;
-    color: #4f264b;
+    font-size: 0.8125rem;
     font-weight: 600;
 }
 
-tr:nth-child(2n) {
-    background-color: #ede8efad;
-}
-
-tr:hover {
+tbody tr:hover {
     background-color: #fbfbfc;
 }
 
@@ -100,6 +107,10 @@ tr:hover {
     gap: 1rem;
     justify-content: space-between;
     margin-top: 3rem;
+    padding-top: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1rem;
+    padding-left: 1.5rem;
 
     & input {
         width: 400px;
@@ -122,28 +133,30 @@ select {
 }
 
 .item-name {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .item-sku {
+    color: var(--label-color);
     font-size: .8rem;
     margin-top: 0.25rem;
 }
 
 .quantity-badge {
-    background-color: #e4e1eaad;
-    border-radius: 4px;
-    display: inline-block;
-    padding: .25rem .6rem;
+    background-color: #F3EEFF;
+    border-radius: 8px;
+    display: block;
+    padding: 0.125rem 0.5rem;
+    text-align: center;
 
     &.out-of-stock {
-        background-color: #e35d80;
+        background-color: #E04A6E;
         color: #fff;
         font-weight: 600;
     }
 
     &.low-stock {
-        background-color: #b6aacb;
+        background-color: #B795C2;
         color: #fff;
         font-weight: 600;
     }
@@ -164,6 +177,7 @@ select {
     cursor: pointer;
     display: flex;
     font-size: 1rem;
+    font-weight: 600;
     padding: 1rem 1.3rem;
     transition: all .3s;
 
@@ -199,12 +213,19 @@ dialog {
 
 dialog[open] {
     animation: open .6s forwards;
-  }
-  
-  @keyframes open {
-    from { opacity: 0; transform: scale(0.7); }
-    to   { opacity: 1; transform: scale(1); }
-  }
+}
+
+@keyframes open {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 .dialog-title {
     color: #6c5c7c;
@@ -213,13 +234,14 @@ dialog[open] {
     margin-bottom: 1.8rem;
 }
 
-input, textarea {
-    border: 1px solid #c1b2c7;
-    border-radius: 4px;
-    color: #6c5c7c;
-    font-family: "Nunito", serif;
-    font-size: 16px;
-    padding: .7rem 1rem;
+input,
+textarea {
+    border: 1px solid #E2D9F6;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-family: "Quicksand", serif;
+    font-size: 1rem;
+    padding: .825rem 1rem;
 }
 
 .form-row {
@@ -373,7 +395,7 @@ input, textarea {
         display: flex;
         justify-content: space-between;
         margin: 10px 0;
-      }
+    }
 }
 
 .scanned-items-list::after {
@@ -385,7 +407,7 @@ input, textarea {
     left: 0;
     background: url(/images/receipt_bg.svg) bottom;
     background-size: 200%;
-  }
+}
 
 #totalScannedItems {
     display: flex;
@@ -397,27 +419,31 @@ input, textarea {
     font-weight: 600;
 }
 
-nav {
+.sidebar {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     padding: 1rem;
-    background: #8a6d95;
-    box-shadow: 0 0 10px #8a6d959c;
-    
+
+    & h1 {
+        margin-bottom: 2rem;
+    }
+
     & a {
-      display: grid;
-      width: 24px;
-      height: 24px;
-      text-align: center;
-      background-color: #fff;
-      padding: .3rem;
-      border-radius: 6px;
-      text-decoration: none;
-      color: #8a6d95;
-      margin-bottom: 1rem;
-      place-items: center;
+        align-items: center;
+        border-radius: 6px;
+        color: #8a6d95;
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: .75rem;
+        text-align: center;
+        text-decoration: none;
+        padding: 0.5rem 0.75rem;
+
+        &.active {
+            background-color: #fff;
+            box-shadow: var(--box-shadow);
+        }       
     }
 }
-

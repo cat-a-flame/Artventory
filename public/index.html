@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/cd9ec28620.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -16,53 +16,40 @@
 
     <main>
         <div class="content-top">
-            <h1 class="title">Artventory</h1>
+            <h2 class="title">Inventory</h2>
             <button id="openModalButton">
                 <i class="fa-solid fa-plus"></i>
                 Add new item
             </button>
         </div>
 
-        <div class="search-area">
-            <input type="text" id="searchInput" placeholder="Search by name, category or SKU">
-            <div>
-                <select id="filterCategory">
-                    <option value="">Filter category</option>
-                    <!-- Add options dynamically based on categories available -->
-                </select>
-                <button class="ghost-button" onclick="resetSearch()">Reset view</button>
+        <div class="table-wrapper">
+            <div class="search-area">
+                <input type="text" id="searchInput" placeholder="Search by name, category or SKU">
+                <div>
+                    <select id="filterCategory">
+                        <option value="">Filter category</option>
+                        <!-- Add options dynamically based on categories available -->
+                    </select>
+                    <button class="ghost-button" onclick="resetSearch()">Reset view</button>
+                </div>
             </div>
+
+            <table id="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Name & SKU</th>
+                        <th>Quantity</th>
+                        <th>Category</th>
+                        <th>Variant</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Regular products will be listed here -->
+                </tbody>
+            </table>
         </div>
-
-        <h2 class="section-title">Regular products</h2>
-        <table id="regular-table">
-            <thead>
-                <tr>
-                    <th>Name & SKU</th>
-                    <th>Quantity</th>
-                    <th>Category</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Regular products will be listed here -->
-            </tbody>
-        </table>
-
-        <h2 class="section-title">Oopsie products</h2>
-        <table id="oopsie-table">
-            <thead>
-                <tr>
-                    <th>Name & SKU</th>
-                    <th>Quantity</th>
-                    <th>Category</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Oopsie products will be listed here -->
-            </tbody>
-        </table>
     </main>
 
     <dialog id="addProductDialog">
@@ -89,12 +76,8 @@
                 </div>
             </div>
             <div class="form-row">
-                <label class="form-label" for="materials">Materials</label>
-                <textarea class="form-input" id="materials" name="materials" required></textarea>
-            </div>
-            <div class="form-row">
-                <label class="form-label" for="type">Type</label>
-                <select class="form-input" id="type" name="type" required>
+                <label class="form-label" for="type">Variant</label>
+                <select class="form-input" id="variant" name="variant" required>
                     <option value="Regular">Regular</option>
                     <option value="Oopsie">Oopsie</option>
                 </select>
@@ -131,12 +114,8 @@
                 </div>
             </div>
             <div class="form-row">
-                <label class="form-label" for="editMaterials">Materials</label>
-                <textarea class="form-input" id="editMaterials" name="editMaterials" required></textarea>
-            </div>
-            <div class="form-row">
-                <label class="form-label" for="editType">Type</label>
-                <select class="form-input" id="editType" name="editType" required>
+                <label class="form-label" for="editVariant">Variant</label>
+                <select class="form-input" id="editVariant" name="editVariant" required>
                     <option value="Regular">Regular</option>
                     <option value="Oopsie">Oopsie</option>
                 </select>

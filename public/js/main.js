@@ -25,10 +25,8 @@ const getInventory = async () => {
     try {
         const response = await fetch('/list-inventory');
         const data = await response.json();
-        const regularTableBody = document.querySelector('#regular-table tbody');
-        const oopsieTableBody = document.querySelector('#oopsie-table tbody');
+        const regularTableBody = document.querySelector('#inventory-table tbody');
         regularTableBody.innerHTML = '';
-        oopsieTableBody.innerHTML = '';
 
         // Sort the products alphabetically by name
         data.products.sort((a, b) => a.name.localeCompare(b.name));
@@ -51,18 +49,16 @@ const getInventory = async () => {
                 </td>
                 <td><div class="quantity-badge ${quantityClass}">${product.quantity}</div></td>
                 <td>${product.category}</td>
+                <td>${product.variant}</td>
                 <td class="action-cell">
-                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}', '${product.type}')">
+                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
+                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.category}', '${product.variant}')">
                         <i class="fa-solid fa-pencil"></i>
                     </button>
-                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
             `;
-            if (product.type === 'Regular') {
-                regularTableBody.appendChild(row);
-            } else if (product.type === 'Oopsie') {
-                oopsieTableBody.appendChild(row);
-            }
+            
+            regularTableBody.appendChild(row);
         });
     } catch (error) {
         console.error('Error fetching inventory:', error);
@@ -119,10 +115,8 @@ const searchProducts = async () => {
     try {
         const response = await fetch(`/search?query=${query}`);
         const data = await response.json();
-        const regularTableBody = document.querySelector('#regular-table tbody');
-        const oopsieTableBody = document.querySelector('#oopsie-table tbody');
+        const regularTableBody = document.querySelector('#inventory-table tbody');
         regularTableBody.innerHTML = '';
-        oopsieTableBody.innerHTML = '';
 
         // Sort the products alphabetically by name
         data.products.sort((a, b) => a.name.localeCompare(b.name));
@@ -136,18 +130,16 @@ const searchProducts = async () => {
                 </td>
                 <td><div class="quantity-badge">${product.quantity}</div></td>
                 <td>${product.category}</td>
+                <td>${product.variant}</td>
                 <td class="action-cell">
-                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}', '${product.type}')">
+                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
+                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.category}', '${product.variant}')">
                         <i class="fa-solid fa-pencil"></i>
                     </button>
-                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
             `;
-            if (product.type === 'Regular') {
-                regularTableBody.appendChild(row);
-            } else if (product.type === 'Oopsie') {
-                oopsieTableBody.appendChild(row);
-            }
+            
+            regularTableBody.appendChild(row);
         });
     } catch (error) {
         console.error('Error searching products:', error);
@@ -166,10 +158,8 @@ const filterByCategory = async () => {
     try {
         const response = await fetch(`/filter?category=${category}`);
         const data = await response.json();
-        const regularTableBody = document.querySelector('#regular-table tbody');
-        const oopsieTableBody = document.querySelector('#oopsie-table tbody');
+        const regularTableBody = document.querySelector('#inventory-table tbody');
         regularTableBody.innerHTML = '';
-        oopsieTableBody.innerHTML = '';
 
         // Sort the products alphabetically by name
         data.products.sort((a, b) => a.name.localeCompare(b.name));
@@ -183,18 +173,15 @@ const filterByCategory = async () => {
                 </td>
                 <td><div class="quantity-badge">${product.quantity}</div></td>
                 <td>${product.category}</td>
+                <td>${product.variant}</td>
                 <td class="action-cell">
-                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.materials}', '${product.category}', '${product.type}')">
+                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
+                    <button class="action-button" onclick="openEditProductModal(${product.id}, '${product.name}', '${product.sku}', ${product.quantity}, '${product.category}', '${product.variant}')">
                         <i class="fa-solid fa-pencil"></i>
                     </button>
-                    <button class="action-button" onclick="deleteProduct(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
             `;
-            if (product.type === 'Regular') {
-                regularTableBody.appendChild(row);
-            } else if (product.type === 'Oopsie') {
-                oopsieTableBody.appendChild(row);
-            }
+            regularTableBody.appendChild(row);
         });
     } catch (error) {
         console.error('Error filtering products:', error);
@@ -228,14 +215,13 @@ const deleteProduct = async (id) => {
 };
 
 // Function to open the edit product modal and pre-fill the fields
-const openEditProductModal = (id, name, sku, quantity, materials, category, type) => {
+const openEditProductModal = (id, name, sku, quantity, category, variant) => {
     document.getElementById('editProductId').value = id;
     document.getElementById('editProductName').value = name;
     document.getElementById('editSku').value = sku;
     document.getElementById('editQuantity').value = quantity;
-    document.getElementById('editMaterials').value = materials;
     document.getElementById('editCategory').value = category;
-    document.getElementById('editType').value = type;
+    document.getElementById('editVariant').value = variant;
     document.getElementById('editProductDialog').showModal();
 };
 
@@ -259,9 +245,8 @@ document.getElementById('addProductForm').onsubmit = async (event) => {
         name: document.getElementById('productName').value,
         sku: document.getElementById('sku').value,
         quantity: parseInt(document.getElementById('quantity').value),
-        materials: document.getElementById('materials').value,
         category: document.getElementById('category').value,
-        type: document.getElementById('type').value,
+        variant: document.getElementById('variant').value,
     };
 
     try {
@@ -294,9 +279,8 @@ document.getElementById('editProductForm').onsubmit = async (event) => {
         name: document.getElementById('editProductName').value,
         sku: document.getElementById('editSku').value,
         quantity: parseInt(document.getElementById('editQuantity').value),
-        materials: document.getElementById('editMaterials').value,
         category: document.getElementById('editCategory').value,
-        type: document.getElementById('editType').value,
+        variant: document.getElementById('editVariant').value,
     };
 
     try {
