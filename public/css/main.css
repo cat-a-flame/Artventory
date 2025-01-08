@@ -447,3 +447,31 @@ textarea {
         }       
     }
 }
+
+#pagination-controls {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: 0.5rem 1.25rem;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: .5rem;
+
+    & button {
+        background-color: transparent;
+        border: 0 none;
+        color: var(--text-color);
+        cursor: pointer;
+        padding: 0.5rem;
+
+        &:hover {
+            background-color: #f3f3f3;
+        }
+    }
+}

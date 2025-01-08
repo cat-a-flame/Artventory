@@ -20,8 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
     getCategories();
 });
 
-// Function to fetch and display the inventory
-const getInventory = async () => {
+let currentPage = 1;
+const itemsPerPage = 10;
+
+const getInventory = async (page = 1) => {
     try {
         const response = await fetch('/list-inventory');
         const data = await response.json();
@@ -31,7 +33,12 @@ const getInventory = async () => {
         // Sort the products alphabetically by name
         data.products.sort((a, b) => a.name.localeCompare(b.name));
 
-        data.products.forEach(product => {
+        // Pagination logic
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const paginatedItems = data.products.slice(startIndex, endIndex);
+
+        paginatedItems.forEach(product => {
             const row = document.createElement('tr');
 
             // Determine the class for the quantity cell
@@ -60,11 +67,65 @@ const getInventory = async () => {
             
             regularTableBody.appendChild(row);
         });
+
+        // Update pagination controls
+        updatePaginationControls(data.products.length, page);
     } catch (error) {
         console.error('Error fetching inventory:', error);
         showToast('There was an error fetching the inventory.', 'error');
     }
 };
+
+function updatePaginationControls(totalItems, currentPage) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const paginationContainer = document.getElementById('pagination-controls');
+    paginationContainer.innerHTML = '';
+
+    const itemsInfo = document.createElement('div');
+    itemsInfo.textContent = `Showing ${Math.min((currentPage - 1) * itemsPerPage + 1, totalItems)} - ${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems} items`;
+    paginationContainer.appendChild(itemsInfo);
+
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.classList.add('pagination-buttons');
+
+    if (currentPage > 1) {
+        const homeButton = document.createElement('button');
+        homeButton.innerHTML = '<i class="fa-solid fa-angles-left"></i>';
+        homeButton.onclick = () => {
+            currentPage = 1;
+            getInventory(currentPage);
+        };
+        buttonsDiv.appendChild(homeButton);
+
+        const prevButton = document.createElement('button');
+        prevButton.innerHTML = '<i class="fa-solid fa-angle-left"></i> Previous';
+        prevButton.onclick = () => {
+            currentPage--;
+            getInventory(currentPage);
+        };
+        buttonsDiv.appendChild(prevButton);
+    }
+
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement('button');
+        nextButton.innerHTML = 'Next <i class="fa-solid fa-angle-right"></i>';
+        nextButton.onclick = () => {
+            currentPage++;
+            getInventory(currentPage);
+        };
+        buttonsDiv.appendChild(nextButton);
+
+        const endButton = document.createElement('button');
+        endButton.innerHTML = '<i class="fa-solid fa-angles-right"></i>';
+        endButton.onclick = () => {
+            currentPage = totalPages;
+            getInventory(currentPage);
+        };
+        buttonsDiv.appendChild(endButton);
+    }
+
+    paginationContainer.appendChild(buttonsDiv);
+}
 
 // Function to fetch and display categories in the select inputs
 const getCategories = async () => {
@@ -305,6 +366,6 @@ document.getElementById('editProductForm').onsubmit = async (event) => {
 
 // Load inventory and categories on page load
 window.onload = () => {
-    getInventory();
+    getInventory(currentPage);
     getCategories();
 };
